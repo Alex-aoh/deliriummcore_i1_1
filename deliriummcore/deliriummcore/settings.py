@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 from decouple import config
 
@@ -34,6 +35,7 @@ ALLOWED_HOSTS = [
     '0.0.0.0',
     '192.168.1.74',
     '34.238.252.6',
+    'www.deliriumm.net',
 ]
 
 
