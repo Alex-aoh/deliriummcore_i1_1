@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from main.methods import checkCoreAccess, getCoreRole
-from oldcore.models import Event, TicketRequest, Ticket, Seller, Fase
+from oldcore.models import Event, TicketRequest, Ticket, Seller, Fase, Entrada
 from django.conf import settings
 from oldcore.methods import checkSeller
 from django.db.models import Q
@@ -97,7 +97,11 @@ def admin_index(request):
 
             for ticket in requests_debt:
                 debt_cash = debt_cash + ticket.total
-            
+
+            entradas_total = Entrada.objects.all()
+
+            for entrada in entradas_total:
+                entradas_total = entradas_total + entrada.price
             
 
             return render(request, 'oldcore/admin_index.html', {
@@ -108,6 +112,7 @@ def admin_index(request):
                 "ap_cash": ap_cash,
                 "boletos": len(Ticket.objects.filter(user=request.user)),
                 "comision": int(ap_cash*0.1),
+                "entradas_total": entradas_total
 
                 
 

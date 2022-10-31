@@ -12,6 +12,9 @@
 
         <h1>Bienvenido {{ user.username }}</h1>
         <p>Hi {{ user.username }}!</p>
+        <a href="{% url 'oldcore:index' %}">
+            <button type="button" class="btn btn-outline-primary">Entrar a oldCore</button>
+        </a>
 
     </div>
 
