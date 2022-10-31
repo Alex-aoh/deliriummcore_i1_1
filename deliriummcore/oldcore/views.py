@@ -98,9 +98,10 @@ def admin_index(request):
             for ticket in requests_debt:
                 debt_cash = debt_cash + ticket.total
 
-            entradas_total = Entrada.objects.all()
+            entradas = Entrada.objects.all()
+            entradas_total = 0
 
-            for entrada in entradas_total:
+            for entrada in entradas:
                 entradas_total = entradas_total + entrada.price
             
 
