@@ -193,9 +193,45 @@ def admin_lista_requests(request):
         if getCoreRole(request.user) == 6 or getCoreRole(request.user) == 5:
 
             requests = TicketRequest.objects.all()
+            requests_aproved = TicketRequest.objects.filter(status="AP")
+            ticketcount_aproved = 0
+
+            for req in requests_aproved:
+                ticketcount_aproved = ticketcount_aproved + req.q_tickets 
+
+            requests_cash_aproved = TicketRequest.objects.filter(Q(payment_method="CASH") & Q(status="AP"))
+            ticketcount_cash_aproved= 0
+
+            for req in requests_cash_aproved:
+                ticketcount_cash_aproved = ticketcount_cash_aproved + req.q_tickets 
+
+            requests_trans_aproved = TicketRequest.objects.filter(Q(payment_method="TRANSFER") & Q(status="AP"))
+            ticketcount_trans_aproved= 0
+
+            for req in requests_trans_aproved:
+                ticketcount_trans_aproved = ticketcount_trans_aproved + req.q_tickets 
+
+            requests_dep_aproved = TicketRequest.objects.filter(Q(payment_method="DEPOSIT") & Q(status="AP"))
+            ticketcount_dep_aproved= 0
+
+            for req in requests_dep_aproved:
+                ticketcount_dep_aproved = ticketcount_dep_aproved + req.q_tickets 
+
+            entrada_total = Entrada.objects.all()
+            totale = 0
+
+            for e in entrada_total:
+                totale = totale + e.price
+
 
             return render(request, 'oldcore/tools/ticketsrequest/admin_lista_requests.html', {
-                "requests": requests
+                "requests": requests,
+                "ticketcount_aproved": ticketcount_aproved,
+                "ticketcount_cash_aproved": ticketcount_cash_aproved,
+                "ticketcount_trans_aproved": ticketcount_trans_aproved,
+                "ticketcount_dep_aproved": ticketcount_dep_aproved,
+                "totale": totale,
+
             })
         else:
             return HttpResponseRedirect(reverse("main:home"))
