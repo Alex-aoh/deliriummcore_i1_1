@@ -1,6 +1,6 @@
 {% extends "oldcore/base.html"%}
 {% load static %}
-{% block title %}Dashboard ADMIN - DLMM{% endblock %}
+{% block title %}Cash - Wavess Core{% endblock %}
 
 {% block head %}
 
@@ -60,7 +60,7 @@
                             <th>{{ req.payment_method }}</th>
                             <th>{{ req.cash_pay }}</th>
                             <th><a href="{% url 'oldcore:request_view' req.id %}"><img src="{% static 'core/icons/square_and_pencil_black.svg' %}" alt="View" height=20 width=20></a></th>
-                            <th><a href="{% url 'oldcore:cashpaytoggle' req.id %}" target="_blank"><img src="{% static 'core/icons/a_square_black.svg' %}" alt="Pay" height=20 width=20></a></th>
+                            <th><a href="{% url 'oldcore:cashpaytoggle' req.id %}"><img src="{% static 'core/icons/a_square_black.svg' %}" alt="Pay" height=20 width=20></a></th>
                         </tr>
                         {% endfor %}
 
@@ -81,6 +81,8 @@
                     </tfoot>
                 </table>
             </div>
+            <h2>Tickets Cash Faltantes: {{ cash_faltante }}</h2>
+            
         </div>
     
 
