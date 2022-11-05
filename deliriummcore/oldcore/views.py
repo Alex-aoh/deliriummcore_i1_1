@@ -223,6 +223,11 @@ def admin_lista_requests(request):
             for e in entrada_total:
                 totale = totale + e.price
 
+            cash_total = 0
+
+            for req in requests:
+                cash_total = cash_total + req.total
+
 
             return render(request, 'oldcore/tools/ticketsrequest/admin_lista_requests.html', {
                 "requests": requests,
@@ -231,7 +236,8 @@ def admin_lista_requests(request):
                 "ticketcount_trans_aproved": ticketcount_trans_aproved,
                 "ticketcount_dep_aproved": ticketcount_dep_aproved,
                 "totale": totale,
-
+                "cash_total": cash_total,
+                
             })
         else:
             return HttpResponseRedirect(reverse("main:home"))
