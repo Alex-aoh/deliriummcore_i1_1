@@ -34,7 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '0.0.0.0',
     '192.168.1.74',
-    '34.238.252.6',
+    '18.233.5.48',
     'www.deliriumm.net',
 ]
 
